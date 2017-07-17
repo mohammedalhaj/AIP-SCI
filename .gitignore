@@ -1,0 +1,10 @@
+target/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+src/reports/generated
+reports/
+/logs/
+/.DS_Store
