@@ -4,8 +4,8 @@ Meta:
 Scenario: TC-001-Search - Search without login for full text article
  
 Given I am On ScitationPage
-When I Fill Testing procedures to : search_Text
-And I click on First_Element
+And I Fill Hopf bifurcation in a nonlocal nonlinear transport equation stemming from stochastic neural dynamics to : search_Text
+And I click on SearchIcon
 And I click on First_search_Result
 And I click on Full_Text
 Then The Access_Message should display

@@ -5,8 +5,8 @@ Meta:
 Scenario: TC-002-Search - A user searching for an article, finding the article, logging in and accessing the full-text
 
 Given I am On ScitationPage
-And I Fill Testing procedures to : search_Text
-And I click on First_Element
+And I Fill Hopf bifurcation in a nonlocal nonlinear transport equation stemming from stochastic neural dynamics to : search_Text
+And I click on SearchIcon
 And I click on First_search_Result
 And I click on Full_Text
 And The Access_Message should display

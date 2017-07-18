@@ -4,8 +4,8 @@ Meta:
 Scenario: TC-006-Publications  - Sign in and access a PDF
 
 Given I am On ScitationPage
-And I Fill Testing procedures to : search_Text
-And I click on First_Element
+And I Fill Hopf bifurcation in a nonlocal nonlinear transport equation stemming from stochastic neural dynamics to : search_Text
+And I click on SearchIcon
 And I click on First_search_Result
 And I click on Full_Text
 And The Access_Message should display
