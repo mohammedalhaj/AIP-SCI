@@ -1,7 +1,7 @@
 [
 	{
 		"name": "chrome",
-		"execute": "true",
+		"execute": "false",
 		"isRemote": "false",
 		"isMobile": "false",
 		"remote": {
@@ -41,7 +41,7 @@
 	},
 	{
 		"name": "firefox",
-		"execute": "false",
+		"execute": "true",
 		"isRemote": "false",
 		"isMobile": "false",
 		"remote": {

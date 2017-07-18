@@ -1,12 +1,10 @@
 package aspire.com.pages;
 
-import static org.openqa.selenium.By.cssSelector;
-
+import java.io.IOException;
 import java.util.List;
 
 import org.jbehave.web.selenium.FluentWebDriverPage;
 import org.jbehave.web.selenium.WebDriverProvider;
-import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.JavascriptExecutor;
@@ -34,39 +32,10 @@ public class GenericPage extends FluentWebDriverPage {
 
 	public static String sharedString;
 	WebDriverWait wait;
-
 	/**
 	 * Default Selector within the class
 	 */
 	private final int CONST_WAIT_LOWER_VALUE = 10;
-
-	public Boolean waitElementToBeVisible(String cssSelector, int time) {
-		final By locator = Selectors.getElement(cssSelector);
-		try {
-			wait = new WebDriverWait(getDriverProvider().get(), time);
-			wait.until(new ExpectedCondition<Boolean>() {
-				public Boolean apply(WebDriver webDriver) {
-					System.out.println("waiting...");
-					sleepTime(1000);
-					return webDriver.findElement(locator) != null;
-				}
-			});
-
-			return true;
-		} catch (TimeoutException e) {
-			return false;
-		}
-	}
-
-	public WebElement getElementByCssSelector(String cssSelector) {
-		Assert.assertTrue(waitElementToBeVisible(cssSelector, CONST_WAIT_LOWER_VALUE));
-		return getDriverProvider().get().findElement(Selectors.getElement(cssSelector));
-	}
-
-	public List<WebElement> getElementsByCssSelector(String cssSelector) {
-		Assert.assertTrue(waitElementToBeVisible(cssSelector, CONST_WAIT_LOWER_VALUE));
-		return getDriverProvider().get().findElements(cssSelector(cssSelector));
-	}
 
 	public void logUserOut() {
 		getDriverProvider().get().manage().deleteAllCookies();
@@ -151,11 +120,9 @@ public class GenericPage extends FluentWebDriverPage {
 		}
 	}
 
-	public boolean isElementHidden(String cssSelector) {
-
-		final By locator = By.cssSelector(cssSelector);
-		waitUntilElementInvisible(locator, 5);
-		return findElement(locator).isDisplayed();
+	public boolean isElementHidden(String locator) {
+		waitUntilElementInvisible(Selectors.getElement(locator), 5);
+		return findElement(Selectors.getElement(locator)).isDisplayed();
 	}
 
 	// checks if element is Available
@@ -282,7 +249,7 @@ public class GenericPage extends FluentWebDriverPage {
 		WebDriverWait wait = new WebDriverWait(getDriverProvider().get(), 40);
 		wait.until(ExpectedConditions
 				.elementToBeClickable(By.cssSelector(EnvirommentManager.getInstance().getProperty(element))));
-		findElement(By.cssSelector(EnvirommentManager.getInstance().getProperty(element))).click();
+		findElement(By.cssSelector(EnvirommentManager.getInstance().getProperty(element)));
 	}
 
 	public void enterText(String element, String text) {

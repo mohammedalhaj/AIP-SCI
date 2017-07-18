@@ -1,15 +1,21 @@
 package aspire.com.steps;
 
-import static org.junit.Assert.assertTrue;
+import java.io.IOException;
 
+import org.apache.tools.ant.property.GetProperty;
 import org.hamcrest.Matchers;
-import org.jbehave.core.annotations.Given;
-import org.jbehave.core.annotations.Named;
-import org.jbehave.core.annotations.Then;
-import org.jbehave.core.annotations.When;
+import org.jbehave.core.annotations.*;
+import org.jbehave.core.model.Narrative;
+import org.junit.Assert;
+import org.openqa.selenium.By;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
 
-import aspire.com.pages.PageFactory;
+import aspire.com.pages.*;
+import cucumber.api.java.Before;
 import jo.aspire.generic.SoftAssert;
+
+import static org.hamcrest.MatcherAssert.assertThat;
 
 public class GenericSteps extends BaseSteps {
 
@@ -25,6 +31,12 @@ public class GenericSteps extends BaseSteps {
 	public void goToHomePageLoggedOut() {
 		getGenericPage().go("http://www.datto.com");
 	}
+
+//	@When("I click on $element")
+//	@Then("I click on $element")
+//	public void clickOnElement(String element) {
+//		getGenericPage().clickOnElement(element);
+//	}
 
 	@When("I verify $element displays")
 	@Then("I verify $element displays")
@@ -61,23 +73,12 @@ public class GenericSteps extends BaseSteps {
 		getGenericPage().verifyElementDisplaysWithText(element, text);
 
 		boolean isElementWithText = getGenericPage().verifyElementDisplaysWithText(element, text);
-		SoftAssert.softAssertThat(isElementWithText, Matchers.equalTo(true));
-
-	}
-
-	@Then("Assert False")
-	public void assertFalse() {
-		assertTrue(false);
+		SoftAssert.softAssertThat(isElementWithText,  Matchers.equalTo(true));
+		
 	}
 
 	@When("page is fully loaded")
 	public void waitPageToLoad() {
 		getGenericPage().WaitPageToLoad();
-	}
-
-	@When("I click on $element")
-	@Then("I click on $element")
-	public void onElement(@Named("element") String element) {
-		getStepsPage().clickOnElement(element);
 	}
 }

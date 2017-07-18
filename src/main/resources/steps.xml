@@ -26,15 +26,21 @@
 	<bean id="GenericSteps" class="aspire.com.steps.GenericSteps">
 		<constructor-arg ref="pageFactory" />
 	</bean>
-
-	<bean id="ECommerceSteps" class="aspire.com.steps.ECommerceSteps">
+	<bean id="eventsSteps" class="aspire.com.steps.EventsSteps">
 		<constructor-arg ref="pageFactory" />
 	</bean>
 
-	<bean id="dattoSteps" class="aspire.com.steps.DattoSteps">
+
+	<bean id="SearchSteps" class="aspire.com.steps.SearchSteps">
+		<constructor-arg ref="pageFactory" />
+	</bean>
+	<bean id="blogSteps" class="aspire.com.steps.BlogSteps">
 		<constructor-arg ref="pageFactory" />
 	</bean>
 	<bean id="lifecycleSteps" class="aspire.com.steps.LifecycleSteps">
+		<constructor-arg ref="pageFactory" />
+	</bean>
+	<bean id="SitationSteps" class="aspire.com.steps.SitationSteps">
 		<constructor-arg ref="pageFactory" />
 	</bean>
 

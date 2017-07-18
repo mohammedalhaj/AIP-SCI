@@ -1,6 +1,8 @@
 package aspire.com.pages;
 
 import org.jbehave.web.selenium.WebDriverProvider;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import jo.aspire.automation.logger.EnvirommentManager;
 
@@ -29,15 +31,20 @@ public class PageFactory {
 		return new GenericPage(webDriverProvider);
 	}
 
-	public DattoPage dattoPage() {
-		return new DattoPage(webDriverProvider);
+	public EventsPage eventPage() {
+		return new EventsPage(webDriverProvider);
 	}
 
-	public ECommercePage ECommercePage() {
-		return new ECommercePage(webDriverProvider);
+	public SearchPage SearchPage() {
+		return new SearchPage(webDriverProvider);
 	}
 
-	public ReadeExcelSheet readeExcelSheet() {
-		return new ReadeExcelSheet(webDriverProvider);
+	public BlogPage blogPage() {
+		return new BlogPage(webDriverProvider);
 	}
+	
+	public ScitationPage newSitationSteps() {
+		return new ScitationPage(webDriverProvider);
+	}
+
 }

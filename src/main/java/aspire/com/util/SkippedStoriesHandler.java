@@ -18,6 +18,9 @@ import com.aspire.automationReport.ExpectedResult;
 import com.aspire.automationReport.ReportDataManager;
 import com.aspire.automationReport.data.DashboardApiHandler;
 import com.aspire.automationReport.util.DateUtil;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.jayway.jsonpath.JsonPath;
 
 /**
  * @author aabusharar

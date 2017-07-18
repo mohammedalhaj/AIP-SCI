@@ -10,16 +10,11 @@ import aspire.com.steps.Selectors;
 /**
  * Page object defining the home page
  */
-public class DattoPage extends GenericPage {
-	public DattoPage(WebDriverProvider driverProvider) {
+public class EventsPage extends GenericPage {
+	public EventsPage(WebDriverProvider driverProvider) {
 		super(driverProvider);
-	}
 
-	public void enterInvalidEmail() {
-		waitUntilElementVisible(Selectors.getElement("subscribeEmailTextBox"), 5);
-		findElement(Selectors.getElement("subscribeEmailTextBox")).clear();
-		findElement(Selectors.getElement("subscribeEmailTextBox")).sendKeys(Selectors.getProperty("invalid_email"));
-		clickOnElement("subscribePopupButton");
+		// TODO Auto-generated constructor stub
 	}
 
 	public boolean eventFilter() {
@@ -54,15 +49,4 @@ public class DattoPage extends GenericPage {
 		return isWorkingProberly;
 	}
 
-	public boolean searchFunctionality() {
-		waitUntilElementVisible(Selectors.getElement("searchBox"), 5);
-		findElement(Selectors.getElement("searchBox")).sendKeys(Selectors.getProperty("valid_text"));
-		clickOnElement("searchButton");
-		waitUntilElementVisible(Selectors.getElement("results"), 5);
-		boolean isFunctional = false;
-		isFunctional = verifyElementDisplaysWithText("titleOfSearchResults",
-				"Search results for: " + Selectors.getProperty("valid_text"))
-				&& findElements(Selectors.getElement("results")).size() >= 1;
-		return isFunctional;
-	}
 }

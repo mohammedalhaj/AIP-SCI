@@ -1,280 +1,65 @@
 package aspire.com.pages;
 
-import org.jbehave.web.selenium.FluentWebDriverPage;
-import org.jbehave.web.selenium.WebDriverProvider;
-import org.mockserver.model.HttpRequest;
-import org.openqa.selenium.By;
-import org.openqa.selenium.Dimension;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.WebDriver.Navigation;
-import org.openqa.selenium.WebDriver.Options;
-import org.openqa.selenium.WebDriver.TargetLocator;
-import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import org.seleniumhq.selenium.fluent.FluentWebElement;
-import org.testng.Assert;
-import org.zaproxy.zap.CustomProxyListener;
-import jo.aspire.automation.logger.AspireLog4j;
-import jo.aspire.automation.logger.EnvirommentManager;
-import jo.aspire.automation.logger.Log4jLevels;
-import jo.aspire.generic.MockServerProxy;
-import jo.aspire.generic.StateHelper;
-import jo.aspire.mobile.automationUtil.Helper;
-import jo.aspire.web.automationUtil.BrowserAlertHelper;
-import jo.aspire.web.automationUtil.DriverProvider;
-import java.io.IOException;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
-import static org.openqa.selenium.By.cssSelector;
-import static org.seleniumhq.selenium.fluent.Period.secs;
-import org.apache.commons.lang.RandomStringUtils;
-import org.hamcrest.CoreMatchers;
-//Here we can put an implementation of any operation to any step
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.NoAlertPresentException;
-import org.openqa.selenium.Point;
-import org.openqa.selenium.interactions.Action;
-import org.openqa.selenium.interactions.internal.Coordinates;
-import org.openqa.selenium.support.ui.ExpectedCondition;
-import org.openqa.selenium.support.ui.Select;
-import com.google.inject.matcher.Matchers;
 import java.awt.AWTException;
-import java.awt.GraphicsConfiguration;
-import java.awt.GraphicsDevice;
-import java.awt.GraphicsEnvironment;
 import java.awt.Robot;
-import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
 import java.io.File;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.concurrent.TimeUnit;
+import java.util.List;
+
+import org.apache.commons.lang.RandomStringUtils;
+import org.jbehave.web.selenium.FluentWebDriverPage;
+import org.jbehave.web.selenium.WebDriverProvider;
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.NoAlertPresentException;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import freemarker.core.Environment;
+import jo.aspire.automation.logger.EnvirommentManager;
+import junit.framework.Assert;
+
+//Here we can put an implementation of any operation to any step
+//import org.seleniumhq.selenium.fluent.FluentWebElement;
+//import static org.seleniumhq.selenium.fluent.Period.secs;
 
 /**
  * Page object defining the home page
  */
-public class StepsPage extends GenericPage {
-	public Connection con;
-	BrowserAlertHelper test = new BrowserAlertHelper();
+public class ScitationPage extends FluentWebDriverPage {
+
 	public static String siteHost;
 	public static String UserName;
 	public static String PassWord;
 
-	public StepsPage(WebDriverProvider driverProvider) {
+	public ScitationPage(WebDriverProvider driverProvider) {
 		super(driverProvider);
-
-		// TODO Auto-generated constructor stub
 	}
+
+	// Screen screen = new Screen();
 
 	ArrayList<String> theList = new ArrayList<String>();
 	List<String> browserTabs;
-
-	/**
-	 * Default Selector within the class
-	 */
-	private By Version = cssSelector("td.mh22-text a");
-	private final int CONST_WAIT_LOWER_VALUE = 30;
-
-	public FluentWebElement getWorkSmartVersion() {
-		return within(secs(CONST_WAIT_LOWER_VALUE)).link(Version);
-	}
-
-	public String checkVersinoTextFromHeader() {
-		return getWorkSmartVersion().getText().toString();
-	}
-
-	public void goFF() {
-
-		DriverProvider dp = new DriverProvider();
-
-		WebDriver webd = dp.initialize("chrome");
-
-		webd.get("https://www.mkyong.com/");
-
-		System.out.println("INSIDE NEW WEB DRIVER ");
-		sleepTime(5000);
-		webd.close();
-		get("http://aspire.jo/");
-		getDriverProvider().get().manage().window().maximize();
-		sleepTime(5000);
-
-	}
-
-	public void go2kargo() {
-		getDriverProvider().get().manage().deleteAllCookies();
-
-		get("https://marketplace.staging.kargo.com/");
-		getDriverProvider().get().manage().window().setSize(new Dimension(1456, 876));
-
-	}
-
-	public void login2KargoSitelist() {
-		sleepTime(2000);
-		get("https://marketplace.staging.kargo.com/advertising/site-lists#/mine");
-		sleepTime(3000);
-	}
-
-	public void goAspire() {
-		get("http://google.jo/");
-
-	}
-
-	public void navigateTo(String page) {
-		get(EnvirommentManager.getInstance().getProperty(page));
-
-	}
-
-	public boolean isJavascriptEnabled() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	public void verifyNetworkData() {
-		System.out.println("------------- start ---------");
-		System.out.println(
-				MockServerProxy.proxy.retrieveAsJSON(HttpRequest.request().withHeader("Host", "www.aspire.jo")));
-		System.out.println("------------- end ---------");
-	}
-
-	public boolean dbOpenConn() throws ClassNotFoundException {
-
-		Class.forName("com.mysql.jdbc.Driver");
-		try {
-			// Create Connection to DB
-			con = DriverManager.getConnection("jdbc:mysql://172.17.100.33/AUTOMATION_DASHBOARD", "roott", "root");
-			System.err.println("CONNECT TO DATABASE");
-		}
-
-		catch (Exception e) {
-			e.printStackTrace();
-			System.err.println("ERROR!!! Cannot connect");
-			return false;
-		}
-
-		return true;
-	}
-
-	public boolean testLogger() throws ClassNotFoundException, SQLException {
-		// System.err.println("getval1 f= " +
-		// StateHelper.getStoryState("testMyVal"));
-		ArrayList<String> rowList = new ArrayList<String>();
-		dbOpenConn();
-		try {
-			// Create Statement Object
-			System.err.println("error ---- " + con);
-			Statement stmt = con.createStatement();
-			// Execute the SQL Query. Store results in ResultSet
-			ResultSet rs = stmt.executeQuery("SELECT * FROM AUTOMATION_DASHBOARD.LOGS limit 1");
-			System.err.println("res" + rs);
-			System.err.println("Executing the query please wait ...");
-			ResultSetMetaData rsmd = null;
-			rsmd = (ResultSetMetaData) rs.getMetaData();
-			int columnsCount = rsmd.getColumnCount();
-
-			for (int j = 1; j <= columnsCount; j++) {
-				System.err.print(rsmd.getColumnName(j) + " || ");
-			}
-			System.out.print("\n");
-			System.out.print("\n");
-			System.out.print("\n");
-			// While Loop to iterate through all data and print results
-			rowList.clear();
-			while (rs.next()) {
-				for (int i = 1; i <= columnsCount; i++) {
-					String Data = rs.getString(i).trim();
-					rowList.add(Data.toLowerCase());
-					// System.err.print(Data + " || ");
-				}
-				System.out.print("\n");
-			}
-			// if (rowList == null) {}
-			if (rowList.size() == 0) {
-				rowList.add("empty");
-				con.close();
-				// return rowList;
-			} else {
-				con.close();
-				// return rowList;
-			}
-		}
-
-		catch (Exception e) {
-			AspireLog4j.setLoggerMessageLevel("\n DB error ", Log4jLevels.INFO, e);
-			e.printStackTrace();
-			// System.err.println("ERROR!!! Please check the query statement");
-			con.close();
-			// return null;
-		}
-
-		return false;
-
-	}
-
-	public void fillUN() {
-
-		StateHelper.setScenarioState("testMyVal", "firstVal");
-		StateHelper.setStoryState("2ndKey", "2ndVal");
-		sleepTime(5000);
-		findElement(By.cssSelector(EnvirommentManager.getInstance().getProperty("UNLocater")))
-				.sendKeys(EnvirommentManager.getInstance().getProperty("UNVal"));
-		// StateHelper.clearScenarioState();
-		// if (System.getProperty("stackBrowserName") == null) {
-		// PlatformInformation.browserName =
-		// EnvirommentManager.getInstance().getProperty("stackBrowserName");
-		// } else {
-		// PlatformInformation.browserName =
-		// System.getProperty("stackBrowserName");
-		// }
-		System.err.println("getval1 t= " + StateHelper.getScenarioState("testMyVal"));
-		System.err.println("get2ndVal t = " + StateHelper.getStoryState("2ndKey"));
-		// System.err.println("getval1 f= " +
-		// StateHelper.checkScenarioStateContainsKey("testMyVal33"));
-		// System.err.println("getval1 t= " +
-		// StateHelper.checkScenarioStateContainsKey("testMyVal"));
-	}
-
-	public void fillPW() {
-		System.err.println("get2ndVal t= " + StateHelper.getStoryState("2ndKey"));
-		// System.err.println("getval1 f= " +
-		// StateHelper.getScenarioState("testMyVal"));
-		StateHelper.setApplicationState("AppKey", "AppVal");
-		StateHelper.setApplicationState("AppKey2", "AppVal2");
-		findElement(By.cssSelector(EnvirommentManager.getInstance().getProperty("PWLocater"))).sendKeys("K@rgo123!");
-		sleepTime(3000);
-	}
-
-	public void getVal() {
-		System.err.println("getApp val t= " + StateHelper.getApplicationState("AppKey"));
-		System.err.println("getApp val t= " + StateHelper.getApplicationState("AppKey2"));
-		System.err.println("get2ndVal from another story= " + StateHelper.getStoryState("2ndKey"));
-	}
-
-	public void alert() throws IOException {
-		sleepTime(7000);
-		clickOnElement("Close");
-		sleepTime(4000);
-		boolean x1 = test.isDialogPresent(getDriverProvider().get());
-		String val = test.getBrowserAlertText(getDriverProvider().get());
-		test.declineBrowserAlert(getDriverProvider().get());
-		sleepTime(5000);
-		System.out.println("my data = " + x1 + val);
-	}
 
 	public void go() throws IOException {
 		get(EnvirommentManager.getInstance().getProperty("LoginPage"));
 		getDriverProvider().get().manage().window().maximize();
 	}
 
+	public void goToUrl(String content) throws IOException {
+		String URL = EnvirommentManager.getInstance().getProperty(content);
+		get(URL);
+		getDriverProvider().get().manage().window().maximize();
+	}
+	
 	public void GoFor(String ContentURLVariable) throws IOException {
 		String URL = EnvirommentManager.getInstance().getProperty(ContentURLVariable);
 		get(URL);
@@ -305,6 +90,17 @@ public class StepsPage extends GenericPage {
 
 		if (!username.equals("") && !password.equals("")) {
 			clickOnElement("Login_button");
+		}
+		// wait("Page_Title");
+
+	}
+	
+	public void Externallogin(String username, String password, String login) throws IOException {
+		enterValueToTextBox("username", EnvirommentManager.getInstance().getProperty(username));
+		enterValueToTextBox("password", EnvirommentManager.getInstance().getProperty(password));
+        
+		if (!username.equals("") && !password.equals("")) {
+			clickOnElement("login");
 		}
 		// wait("Page_Title");
 
@@ -350,7 +146,7 @@ public class StepsPage extends GenericPage {
 	}
 
 	public void wait(String element) throws IOException {
-		WebDriverWait wait = new WebDriverWait(getDriverProvider().get(), 60);
+		WebDriverWait wait = new WebDriverWait(getDriverProvider().get(), 6);
 		wait.until(ExpectedConditions
 				.visibilityOfElementLocated(By.cssSelector(EnvirommentManager.getInstance().getProperty(element))));
 
@@ -416,7 +212,7 @@ public class StepsPage extends GenericPage {
 
 	public void enterValueToTextBox(String element, String value) throws IOException {
 
-		wait(element);
+		waitPresenceOfElement(element);
 		if (value.equalsIgnoreCase("empty")) {
 			findElement(By.cssSelector(EnvirommentManager.getInstance().getProperty(element))).clear();
 		} else {
@@ -426,13 +222,13 @@ public class StepsPage extends GenericPage {
 	}
 
 	public void enterDynamicValueToTextBox(String element, String dataEntry) throws IOException {
-		wait(element);
+		waitPresenceOfElement(element);
 		findElement(By.cssSelector(EnvirommentManager.getInstance().getProperty(element)))
 				.sendKeys(dataEntry + generateID());
 
 	}
 
-	public void clickOnElement(String element) {
+	public void clickOnElement(String element) throws IOException {
 		// WaitPageToLoad();
 		// wait(element);
 		WebDriverWait wait = new WebDriverWait(getDriverProvider().get(), 20);
@@ -450,13 +246,12 @@ public class StepsPage extends GenericPage {
 
 	public void clickOnAnElement(String element) throws IOException {
 
-		wait(element);
-		// scrollToElement(element);
+		waitPresenceOfElement(element);
+
 		findElement(By.cssSelector(EnvirommentManager.getInstance().getProperty(element))).click();
 		try {
 			WaitDOMToBeReady();
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -491,7 +286,7 @@ public class StepsPage extends GenericPage {
 	public boolean compareTwoElement(String element, String value) throws IOException {
 		waitElementToDisappear("progressDialog");
 		SleepTime(1000);
-		wait(element);
+		waitPresenceOfElement(element);
 		boolean result = false;
 		if (findElement(By.cssSelector(EnvirommentManager.getInstance().getProperty(element))).getText().toString()
 				.equalsIgnoreCase(value)) {
@@ -502,7 +297,7 @@ public class StepsPage extends GenericPage {
 
 	public boolean checkIsDisplys(String element) throws IOException {
 		// waitElementToDisappear("progressDialog");
-		wait(element);
+		waitPresenceOfElement(element);
 		return findElement(By.cssSelector(EnvirommentManager.getInstance().getProperty(element))).isDisplayed();
 
 	}
@@ -592,7 +387,7 @@ public class StepsPage extends GenericPage {
 		} else {
 			clickOnElement("Last_page_Button");
 			waitElementToDisappear("progressDialog");
-			wait(items);
+			waitPresenceOfElement(items);
 			SleepTime(2000);
 			num1 = findElements(By.cssSelector(EnvirommentManager.getInstance().getProperty(items))).size();
 		}
@@ -601,7 +396,7 @@ public class StepsPage extends GenericPage {
 
 	public boolean isEnabled(String element) throws IOException {
 		boolean Condition = false;
-		wait(element);
+		waitPresenceOfElement(element);
 		if (findElement(By.cssSelector(EnvirommentManager.getInstance().getProperty(element))).isEnabled()) {
 			Condition = true;
 		}
@@ -609,8 +404,8 @@ public class StepsPage extends GenericPage {
 	}
 
 	public void hoverOverElement(String theElement) throws IOException {
-		waitElementToDisappear("progressDialog");
-		wait(theElement);
+		//waitElementToDisappear("progressDialog");
+		waitPresenceOfElement(theElement);
 		WebElement elem = findElement(By.cssSelector(EnvirommentManager.getInstance().getProperty(theElement)));
 		Actions builder = new Actions(getDriverProvider().get());
 		Actions hoverOver = builder.moveToElement(elem);
@@ -644,13 +439,34 @@ public class StepsPage extends GenericPage {
 	}
 
 	public void ScrollAndClick(String element) throws IOException {
-		wait("Page_Title");
-		wait("Search_Box");
+		waitPresenceOfElement("Page_Title");
+		waitPresenceOfElement("Search_Box");
 		// scrollToElement("Search_Box");
 		scrollToElementAndStop(element);
 		clickOnElement(element);
-		wait("Page_Title");
+		waitPresenceOfElement("Page_Title");
 	}
+
+	// public void printPageErrors() throws Exception {
+	//
+	// // driver = new FirefoxDriver(profile);
+	// // WebDriver driver ;
+	// // Capture all errors and store them In array.
+	// WebDriver driver = getDriverProvider().get();
+	// List<JavaScriptError> Errors = JavaScriptError.readErrors(driver);
+	// System.out.println("Total No Of JavaScript Errors : " + Errors.size());
+	// // Print Javascript Errors one by one from array.
+	// for (int i = 0; i < Errors.size(); i++) {
+	// System.out.println("Error Message : "
+	// + Errors.get(i).getErrorMessage());
+	// System.out.println("Error Line No : "
+	// + Errors.get(i).getLineNumber());
+	// System.out.println(Errors.get(i).getSourceName());
+	// System.out.println();
+	// // driver.close();
+	// // driver.quit();
+	// }
+	// }
 
 	public void printLists(ArrayList<String> a1, ArrayList<String> a2) {
 
@@ -679,20 +495,40 @@ public class StepsPage extends GenericPage {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		wait(element);
+		waitPresenceOfElement(element);
 		findElement(By.cssSelector(EnvirommentManager.getInstance().getProperty(element))).isDisplayed();
 
 	}
+	
+	
+	
+	public boolean hideElement(String element) throws IOException {
+		try {
+			WaitDOMToBeReady();
+		} catch (Exception e) {
+			
+		}
+	boolean NotDisplay = findElement(By.cssSelector(EnvirommentManager.getInstance().getProperty(element))).isDisplayed();
+	
+		if(!NotDisplay);
+		{
+			return true;
+		}
+	
 
-	public void uploadFileTo(String Thefile, String Choose) throws IOException, AWTException {
-		SleepTime(5000);
-		String Path = System.getProperty("user.dir") + File.separator + "src" + File.separator + Thefile;
-		System.out.print(Path);
-
-		findElement(By.id(EnvirommentManager.getInstance().getProperty(Choose))).sendKeys(Path);
-
-		wait("Upload_Files");
 	}
+
+	/*
+	 * public void WaitPageToLoad() { boolean pageLoaded = false; int counter =
+	 * 0; while (!pageLoaded) {
+	 * 
+	 * if (counter ==
+	 * 5||executeScript("return document.readyState").toString().equals(
+	 * "complete") ) { pageLoaded = true; break; } System.out.println(counter);
+	 * try { Thread.sleep(1000); } catch (InterruptedException e) { // TODO
+	 * Auto-generated catch block e.printStackTrace(); } counter++; } }
+	 */
+
 
 	public void switchTabs() {
 		browserTabs = new ArrayList<String>(getWindowHandles());
@@ -704,11 +540,22 @@ public class StepsPage extends GenericPage {
 			e.printStackTrace();
 		}
 	}
+	
+	public void switchWindows() {
+		ArrayList<String> tabs2 = new ArrayList<String>(getWindowHandles());
+		switchTo().window(tabs2.get(1));
+		try {
+			WaitDOMToBeReady();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 
 	String ElemntText;
 
 	public void getText(String element) throws IOException {
-		wait(element);
+		waitPresenceOfElement(element);
 		ElemntText = findElement(By.cssSelector(EnvirommentManager.getInstance().getProperty(element))).getText();
 
 	}
@@ -720,7 +567,7 @@ public class StepsPage extends GenericPage {
 
 	public void assertResult(String Actual, String expected) throws IOException {
 
-		wait(Actual);
+		waitPresenceOfElement(Actual);
 		String Message = findElement(By.cssSelector(EnvirommentManager.getInstance().getProperty(Actual))).getText();
 		Assert.assertTrue(Message.toLowerCase().contains(expected.toLowerCase()));
 	}
@@ -754,7 +601,7 @@ public class StepsPage extends GenericPage {
 				By.cssSelector(EnvirommentManager.getInstance().getProperty(element)));
 		for (int i = 0; i < allOptions.size();) {
 			firstElemntText = allOptions.get(i).getText();
-			allOptions.get(i).click();
+			allOptions.get(i+1).click();
 			break;
 		}
 	}
@@ -766,6 +613,12 @@ public class StepsPage extends GenericPage {
 		for (int i = 0; i < links.size(); i++) {
 			String Link = links.get(i).getAttribute("href");
 			if (!Link.equals(null)) {
+				try {
+					Thread.sleep(3000);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 				links.get(i).click();
 				ArrayList<String> tabs2 = new ArrayList<String>(getWindowHandles());
 				if (tabs2.size() == 1) {
@@ -776,7 +629,7 @@ public class StepsPage extends GenericPage {
 						e1.printStackTrace();
 					}
 					try {
-						Thread.sleep(3000);
+						Thread.sleep(5000);
 					} catch (InterruptedException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
@@ -897,8 +750,16 @@ public class StepsPage extends GenericPage {
 		enterValueToTextBox("Registeration_FirstName_TextBox", RandomStringUtils.randomAlphabetic(5));
 		enterValueToTextBox("Registeration_LasttName_TextBox", RandomStringUtils.randomAlphabetic(5));
 		enterValueToTextBox("Registeration_Email_TextBox", generateEmail("Email@Email.com"));
-		enterValueToTextBox("Registeration_Password_TextBox",
-				RandomStringUtils.randomAlphabetic(5) + RandomStringUtils.randomAscii(5));
+		enterValueToTextBox("Registeration_Password_TextBox",RandomStringUtils.randomAlphabetic(5) + RandomStringUtils.randomAscii(5));
+		clickOnElement("Terms_of_Use");
+		enterValueToTextBox("Captcha_Textbox", RandomStringUtils.randomAlphabetic(5));
+		
+		
+	}
+	public void getURL(String Page_URL){
+		
+		Assert.assertTrue(getCurrentUrl().contains(Page_URL));
+		
 	}
 
 }

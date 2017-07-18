@@ -55,7 +55,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
-import aspire.com.util.EnvironmentVariables;
+//import aspire.com.util.EnvironmentVariables;
 import aspire.com.util.SkippedStoriesHandler;
 import aspire.com.zap.ZapScan;
 import jo.aspire.automation.logger.AspireLog4j;
@@ -85,7 +85,7 @@ public class StoriesTest extends JUnitStories {
 	StoryReporterBuilder reporterBuilder = null;
 
 
-	static String storiesPathToRun = "datto/*";
+	static String storiesPathToRun = "*";
 
 
 	@Override
@@ -213,7 +213,7 @@ public class StoriesTest extends JUnitStories {
 		// properties value
 
 		checkThreadsValue();
-		loadTargetPlatformProps();
+		//loadTargetPlatformProps();
 		// Screenshot property
 		if (Integer.parseInt(EnvirommentManager.getInstance().getProperty("Threads")) == 1) {
 			// ReportDataManager.getInstance().setPreScreenshotEnabled(true);
@@ -320,8 +320,8 @@ public class StoriesTest extends JUnitStories {
 
 				String ReportName = "Automation_Report_BuildNumber-" + buildName + "_" + dateAndTime + ".html";
 				ReportDataManager.getInstance().setReportFileName(ReportName);
-				ReportDataManager.getInstance().setReportTitle(EnvironmentVariables.getAspireReportType());
-				ReportDataManager.getInstance().setReportSubTitle(EnvironmentVariables.getAspireReportName());
+				//ReportDataManager.getInstance().setReportTitle(EnvironmentVariables.getAspireReportType());
+				//ReportDataManager.getInstance().setReportSubTitle(EnvironmentVariables.getAspireReportName());
 				ReportDataManager.getInstance().setReportTitle("Aspire");
 				ReportDataManager.getInstance().setReportSubTitle("testing report");
 				ReportDataManager.getInstance().setTitle("Aspire");
@@ -641,9 +641,9 @@ public class StoriesTest extends JUnitStories {
 
 	}
 
-	private void loadTargetPlatformProps() {
-		EnvironmentVariables.local = EnvirommentManager.getInstance().getProperty("LOCAL").toUpperCase();
-		System.err.println("EnvirommentVariabels.local: " + EnvironmentVariables.local);
-	}
+//	private void loadTargetPlatformProps() {
+//		EnvironmentVariables.local = EnvirommentManager.getInstance().getProperty("LOCAL").toUpperCase();
+//		System.err.println("EnvirommentVariabels.local: " + EnvironmentVariables.local);
+//	}
 
 }
