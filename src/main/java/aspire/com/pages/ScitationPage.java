@@ -256,6 +256,19 @@ public class ScitationPage extends FluentWebDriverPage {
 		}
 
 	}
+	
+	public void useRopot() throws Exception{
+		try {
+			Robot rb = new Robot();
+			rb.keyPress(KeyEvent.VK_TAB);
+			rb.keyRelease(KeyEvent.VK_V);
+			WaitDOMToBeReady();
+		} catch (AWTException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
 
 	// this is jquery JS => (argument[0].click(),ele)
 	public void clickOnElementUsingJS(String element) throws IOException {
@@ -490,7 +503,7 @@ public class ScitationPage extends FluentWebDriverPage {
 
 	public void displaysElement(String element) throws IOException {
 		try {
-			WaitDOMToBeReady();
+			//WaitDOMToBeReady();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -84,9 +84,7 @@ public class StoriesTest extends JUnitStories {
 	Format[] formats = null;
 	StoryReporterBuilder reporterBuilder = null;
 
-
 	static String storiesPathToRun = "*";
-
 
 	@Override
 	public Configuration configuration() {
@@ -215,13 +213,13 @@ public class StoriesTest extends JUnitStories {
 		checkThreadsValue();
 		//loadTargetPlatformProps();
 		// Screenshot property
-		if (Integer.parseInt(EnvirommentManager.getInstance().getProperty("Threads")) == 1) {
-			// ReportDataManager.getInstance().setPreScreenshotEnabled(true);
-			ReportDataManager.getInstance().setFailedScreenshotEnabled(true);
-			// ReportDataManager.getInstance().setPostScreenshotEnabled(true);
-			// ReportDataManager.getInstance().setDeleteScreenshotsForPassedScenarios(true);
-
-		}
+//		if (Integer.parseInt(EnvirommentManager.getInstance().getProperty("Threads")) == 1) {
+//			// ReportDataManager.getInstance().setPreScreenshotEnabled(true);
+//			ReportDataManager.getInstance().setFailedScreenshotEnabled(true);
+//			// ReportDataManager.getInstance().setPostScreenshotEnabled(true);
+//			// ReportDataManager.getInstance().setDeleteScreenshotsForPassedScenarios(true);
+//
+//		}
 
 		String platformName = StringUtils.isNotBlank(System.getProperty("os.name")) ? System.getProperty("os.name")
 				: "N/A";
@@ -257,7 +255,6 @@ public class StoriesTest extends JUnitStories {
 		ft = ReportDataManager.setDateFormatWithTimeZone(ft);
 
 		String dateAndTime = ft.format(date);
-	
 		// dateAndTime = dateAndTime.replace(",,", " ");
 		String buildName = "";
 		if (System.getProperty("buildName") != null) {
@@ -415,15 +412,7 @@ public class StoriesTest extends JUnitStories {
 		int threads = 1;
 		if (StringUtils.isNumeric(EnvirommentManager.getInstance().getProperty("rerun.thread.count"))) {
 			threads = Integer.parseInt(EnvirommentManager.getInstance().getProperty("rerun.thread.count"));
-			if (threads > 1) {
-				ReportDataManager.getInstance().setThreading(true);
-				ReportDataManager.getInstance().setFailedScreenshotEnabled(false);
-				ReportDataManager.getInstance().setPostScreenshotEnabled(false);
-				ReportDataManager.getInstance().setPreScreenshotEnabled(false);
-				ReportDataManager.getInstance().setDeleteScreenshotsForPassedScenarios(false);
-			} else {
-				ReportDataManager.getInstance().setThreading(false);
-			}
+			enableDisableScreenShoot(threads);
 		}
 
 		for (int j = 0; j < rerunCount; j++) {
@@ -460,7 +449,6 @@ public class StoriesTest extends JUnitStories {
 		ArrayList<Scenario> skippedScenarioByStroy = null;
 		ArrayList<Scenario> skipScenarios = new ArrayList<Scenario>();
 
-
 		StoryManager storyManager = embedder.storyManager();
 		List<String> stories = new StoryFinder().findPaths(codeLocationFromClass(StoriesTest.class).getFile(),
 				asList("**/" + System.getProperty("storyFilter", storiesPathToRun) + ".story"), null);
@@ -489,7 +477,6 @@ public class StoriesTest extends JUnitStories {
 			}
 		}
 
-
 		ReportDataManager.getInstance().addSkippedScenarios(skipScenarios);
 		// System.out.println("skippedScenarioByStroy count: " +
 		// skippedScenarioByStroy.size());
@@ -502,25 +489,13 @@ public class StoriesTest extends JUnitStories {
 	 * Method used to Set Threading to true or false based on Threads
 	 */
 	public void checkThreadsValue() {
-
 		EnvirommentManager propsUtil = EnvirommentManager.getInstance();
 		String threads = propsUtil.getProperty("Threads");
 		if (StringUtils.isNumeric(threads)) {
-			if (Integer.parseInt(threads) > 1)
-				ReportDataManager.getInstance().setThreading(true);
-			else if (Integer.parseInt(threads) == 1)
-				ReportDataManager.getInstance().setThreading(false);
-			else {
-				AspireLog4j.setLoggerMessageLevel("Threads value can't be 0 run terminated ", Log4jLevels.ERROR);
-				System.exit(0);
-			}
-		}
-
-		else {
-
+			enableDisableScreenShoot(Integer.parseInt(threads));
+		} else {
 			AspireLog4j.setLoggerMessageLevel("Threads value can't be null - run terminated ", Log4jLevels.ERROR);
 			System.exit(0);
-
 		}
 
 	}
@@ -614,6 +589,9 @@ public class StoriesTest extends JUnitStories {
 			System.out.println("Report Path is " + reportFolder);
 			System.out.println(ReportDataManager.getInstance().getLogFilePath());
 
+			System.out.println("Report Path is " + reportFolder);
+			System.out.println(ReportDataManager.getInstance().getLogFilePath());
+
 			if (!reportFolder.exists())
 
 			{
@@ -633,7 +611,7 @@ public class StoriesTest extends JUnitStories {
 	 * @param value
 	 */
 	private void addRunDetails(String key, String value) {
-		long runId = DashboardApiHandler.instance.globalRun.getId();
+		long runId = DashboardApiHandler.globalRun.getId();
 
 		if (StringUtils.isNotBlank(key) && runId > 0) {
 			DashboardApiHandler.instance.addRunDetails(runId, key, value);
@@ -645,5 +623,42 @@ public class StoriesTest extends JUnitStories {
 //		EnvironmentVariables.local = EnvirommentManager.getInstance().getProperty("LOCAL").toUpperCase();
 //		System.err.println("EnvirommentVariabels.local: " + EnvironmentVariables.local);
 //	}
+
+//	private void enableDisableMutiThreading(int threads) {
+//		if (threads > 1) {
+//			ReportDataManager.getInstance().setThreading(true);
+//		} else if (threads == 1) {
+//			ReportDataManager.getInstance().setThreading(false);
+//		} else {
+//			AspireLog4j.setLoggerMessageLevel("Threads value can't be 0 run terminated ", Log4jLevels.ERROR);
+//			System.exit(0);
+//		}
+//	}
+
+	private void enableDisableScreenShoot(int threads) {
+		
+		boolean isFailed = StringUtils.isNotBlank(EnvirommentManager.getInstance().getProperty("enable.failed.screenshot")) ? Boolean.parseBoolean(EnvirommentManager.getInstance().getProperty("enable.failed.screenshot").trim()) : false;
+		boolean isPassed = StringUtils.isNotBlank(EnvirommentManager.getInstance().getProperty("enable.post.screenshot")) ? Boolean.parseBoolean(EnvirommentManager.getInstance().getProperty("enable.post.screenshot").trim()) : false;
+		boolean isPre    = StringUtils.isNotBlank(EnvirommentManager.getInstance().getProperty("enable.pre.screenshot")) ? Boolean.parseBoolean(EnvirommentManager.getInstance().getProperty("enable.pre.screenshot").trim()) : false;
+		boolean isDelete = StringUtils.isNotBlank(EnvirommentManager.getInstance().getProperty("enable.delete.passed.screenshot")) ? Boolean.parseBoolean(EnvirommentManager.getInstance().getProperty("enable.delete.passed.screenshot").trim()) : false;
+		
+		if (threads > 1) {
+			ReportDataManager.getInstance().setThreading(true);
+			ReportDataManager.getInstance().setFailedScreenshotEnabled(false);
+			ReportDataManager.getInstance().setPostScreenshotEnabled(false);
+			ReportDataManager.getInstance().setPreScreenshotEnabled(false);
+			ReportDataManager.getInstance().setDeleteScreenshotsForPassedScenarios(false);
+		} else if (threads == 1) {
+			ReportDataManager.getInstance().setThreading(false);
+			ReportDataManager.getInstance().setFailedScreenshotEnabled(isFailed);
+			ReportDataManager.getInstance().setPostScreenshotEnabled(isPassed);
+			ReportDataManager.getInstance().setPreScreenshotEnabled(isPre);
+			ReportDataManager.getInstance().setDeleteScreenshotsForPassedScenarios(isDelete);	
+		} else {
+			AspireLog4j.setLoggerMessageLevel("Threads value can't be 0 run terminated ", Log4jLevels.ERROR);
+			System.exit(0);
+		}
+
+	}
 
 }
