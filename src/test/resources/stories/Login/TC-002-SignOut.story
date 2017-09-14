@@ -1,7 +1,7 @@
 Meta:
 @production
 
-Scenario: TC-002-Login - Sign out And “user” welcome is gone 
+Scenario: TC-002-Login - Sign out And user welcome is gone 
 
 Given I am on login page
 When user login with Valid_User_Name user name and Valid_Password password.

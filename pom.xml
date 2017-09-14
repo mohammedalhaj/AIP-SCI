@@ -10,12 +10,12 @@
 
 
 	<properties>
-		<org.jbehave.core.version>4.0.4</org.jbehave.core.version>
+		<org.jbehave.core.version>4.1.1</org.jbehave.core.version>
 		<springframework.version>4.2.3.RELEASE</springframework.version>
 		<org.seleniumhq.selenium.fluent.version>1.16</org.seleniumhq.selenium.fluent.version>
 		<cucumber.version>1.2.4</cucumber.version>
-		<automation.util.version>v4.2.4</automation.util.version>
-		<asreport.version>v1.3.4</asreport.version>
+		<automation.util.version>v2.2.49-QA</automation.util.version>
+		<asreport.version>v1.2.7-QA</asreport.version>
 		<maven.compiler.source>1.7</maven.compiler.source>
 		<maven.compiler.target>1.7</maven.compiler.target>
 	</properties>
@@ -37,7 +37,6 @@
 					<target>${maven.compiler.target}</target>
 				</configuration>
 			</plugin>
-
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-surefire-plugin</artifactId>
@@ -63,9 +62,6 @@
 					</excludes>
 				</configuration>
 			</plugin>
-
-
-
 		</plugins>
 	</build>
 	<dependencies>
@@ -108,7 +104,6 @@
 			<artifactId>jbehave-core</artifactId>
 			<version>${org.jbehave.core.version}</version>
 		</dependency>
-
 		<dependency>
 			<groupId>com.github.AspireInfotech</groupId>
 			<artifactId>ASReport</artifactId>

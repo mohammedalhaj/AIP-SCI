@@ -23,7 +23,7 @@ import com.jayway.jsonpath.spi.mapper.JacksonMappingProvider;
 public class JSONUtil {
 
 	private static Configuration configuration;
-	private String jsonpath = "$.[%s].%s";
+	//private String jsonpath = "$.[%s].%s";
 	static {
 		try {
 			configuration = Configuration.builder().jsonProvider(new JacksonJsonNodeJsonProvider())

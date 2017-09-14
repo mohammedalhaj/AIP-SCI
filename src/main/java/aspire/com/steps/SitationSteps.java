@@ -81,12 +81,6 @@ public class SitationSteps extends BaseSteps {
 	public void clickOnElement(@Named("element") String element) throws IOException, Exception {
 		getScitationPage().clickOnAnElement(element);
 	}
-	
-	@When("I Use Robot")
-	public void useRobot() throws Exception{
-		getScitationPage().useRopot();
-	}
-	
 
 	@Given("I Click On $element")
 	@When("I Click On $element")

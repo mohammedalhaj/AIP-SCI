@@ -1,5 +1,7 @@
 package aspire.com.zap;
 
+import org.zaproxy.clientapi.core.ClientApi;
+
 import java.io.File;
 import java.io.IOException;
 import java.net.InetSocketAddress;
@@ -9,8 +11,6 @@ import java.net.SocketTimeoutException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
-
-import org.zaproxy.clientapi.core.ClientApi;
 
 /**
  * taken from https://github.com/continuumsecurity/bdd-security/blob/master/src/main/java/net/continuumsecurity/scanner/ZapManager.java

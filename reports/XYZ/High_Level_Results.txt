@@ -1,0 +1,4 @@
+tc_ran =  15
+tc_passed = 14
+tc_failed = 1
+tc_skipped = 0

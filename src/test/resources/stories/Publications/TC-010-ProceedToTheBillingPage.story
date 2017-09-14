@@ -4,8 +4,8 @@ Meta:
 Scenario: TC-010-Publications - Verify you can proceed to the billing page 
 
 Given I am On ScitationPage
-And I Fill Hopf bifurcation in a nonlocal nonlinear transport equation stemming from stochastic neural dynamics to : search_Text
-And I click on SearchIcon
+And I Fill Testing procedures to : search_Text
+And I click on First_Element
 And I click on First_search_Result
 And I click on Full_Text
 When The Access_Message should display

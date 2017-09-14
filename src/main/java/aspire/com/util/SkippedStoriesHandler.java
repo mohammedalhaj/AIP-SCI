@@ -4,8 +4,6 @@
 package aspire.com.util;
 
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 import org.jbehave.core.model.Scenario;
@@ -18,9 +16,6 @@ import com.aspire.automationReport.ExpectedResult;
 import com.aspire.automationReport.ReportDataManager;
 import com.aspire.automationReport.data.DashboardApiHandler;
 import com.aspire.automationReport.util.DateUtil;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.jayway.jsonpath.JsonPath;
 
 /**
  * @author aabusharar
@@ -28,7 +23,7 @@ import com.jayway.jsonpath.JsonPath;
  */
 public class SkippedStoriesHandler {
 
-	private static DashboardApiHandler dashboardApiHandler = DashboardApiHandler.instance;
+	private static DashboardApiHandler dashboardApiHandler = DashboardApiHandler.getInstance();
 
 	/**
 	 * 
@@ -41,14 +36,12 @@ public class SkippedStoriesHandler {
 	public static CustomStory createCustomStory(Story story, ExpectedResult result, long runId,
 			boolean isCurrentRunning) {
 		CustomStory customStory = new CustomStory();
-		Calendar cuurent = Calendar.getInstance();
 		customStory.setStory(story);
 		customStory.setCurrentlyRunning(isCurrentRunning);
-		customStory.setStartDate(cuurent.getTime());
+		customStory.setStartDate(DateUtil.getDateByUTCZone());
 		customStory.setStatus(result);
 		customStory.setExecutionDate(DateUtil.dateToString(customStory.getStartDate()));
-		cuurent.add(Calendar.MINUTE, 2);
-		customStory.setEndDate(cuurent.getTime());
+		customStory.setEndDate(DateUtil.getDateByUTCZone());
 		customStory.setRunId(runId);
 
 		return customStory;
@@ -64,11 +57,10 @@ public class SkippedStoriesHandler {
 	public static CustomScenario createCustomScenario(Scenario scenario, ExpectedResult result,
 			boolean isCurrentRunning, Long storyId) {
 		CustomScenario customScenario = new CustomScenario();
-		// Calendar cuurent = Calendar.getInstance();
-		customScenario.setStartDate(new Date());
+		customScenario.setStartDate(DateUtil.getDateByUTCZone());
 		customScenario.setScenario(scenario);
 		customScenario.setCurrentlyRunning(isCurrentRunning);
-		customScenario.setEndDate(new Date());
+		customScenario.setEndDate(DateUtil.getDateByUTCZone());
 		customScenario.setStatus(result);
 		customScenario.setStoryID(storyId);
 		return customScenario;
@@ -81,13 +73,11 @@ public class SkippedStoriesHandler {
 	 * @return
 	 */
 	public static CustomStep createCustomStep(String step, ExpectedResult result, Long scenarioId) {
-		// Calendar cuurent = Calendar.getInstance();
 		CustomStep customStep = new CustomStep();
-		customStep.setStartDate(new Date());
+		customStep.setStartDate(DateUtil.getDateByUTCZone());
 		customStep.setStatus(ExpectedResult.skipped);
 		customStep.setStep(step);
-		// cuurent.add(Calendar.MINUTE, 2);
-		customStep.setEndDate(new Date());
+		customStep.setEndDate(DateUtil.getDateByUTCZone());
 		customStep.setScenarioID(scenarioId);
 		return customStep;
 	}
@@ -106,10 +96,6 @@ public class SkippedStoriesHandler {
 		ArrayList<CustomStep> customSteps = new ArrayList<>();
 		dashboardApiHandler.addStory(customStory);
 		for (Scenario scenario : skippedScenarios) {
-			System.out.println("Ahmad Test --> {" + "Name: " + scenario.getTitle() + " , Meta: "
-					+ scenario.getMeta().toString() + " , StatusId: " + ExpectedResult.skipped + " , StartDate: "
-					+ Calendar.getInstance().getTime() + " , EndDate :" + null + " , ExecutionTime: " + null + "}");
-
 			CustomScenario customScenario = createCustomScenario(scenario, result, isCurrentRunning,
 					customStory.getId());
 			dashboardApiHandler.addScenario(customScenario);
@@ -139,7 +125,5 @@ public class SkippedStoriesHandler {
 		dashboardApiHandler.updateRun();
 
 	}
-
-
 
 }
