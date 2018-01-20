@@ -1,0 +1,58 @@
+aspire:  
+  webdriver:
+     scope: scenario
+      
+  jbehave:
+    metat-data:
+    - -s2 
+    thread: 1
+    story-time-out: 3000 
+    rerun: 1 
+    softassert: 
+      enabled: true 
+    stories:
+      defaultloader:
+        enabled: true   
+        include: 
+         # - stories/02-HomePage/TC-002**.story
+          - stories/05- Submit Manuscript/TC-003**.story
+         # - stories/11-Reviewers/TC-**.story
+     
+          
+        
+  screenshot:
+    enabled: false
+    filesaver:
+      enabled: true
+      folder-location: ./screenshots/
+
+spring:
+  output:
+    ansi:
+      enabled: always  
+logging:
+  level: 
+    com:
+      aspire: DEBUG
+  file: application_zurqan.log  
+
+
+endpoints:
+  beans:
+    sensitive: false
+  shutdown:
+    enabled: true
+  env:
+    sensitive: false
+    
+    
+server:
+  port: 0
+
+
+
+
+
+
+
+   
