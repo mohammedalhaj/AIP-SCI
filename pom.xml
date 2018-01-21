@@ -22,16 +22,16 @@
 
 	<dependencyManagement>
 		<dependencies>
-			<dependency> 
+			<dependency>
 				<groupId>com.github.AspireInfotech</groupId>
 				<artifactId>Automation-Dependencies</artifactId>
-				<version>1.0.9.95-GAMMA</version>
+				<version>1.0.9.97-GAMMA</version>
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
 			<dependency>
 				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-starter-parent</artifactId> 
+				<artifactId>spring-boot-starter-parent</artifactId>
 				<version>1.5.6.RELEASE</version>
 				<scope>import</scope>
 				<type>pom</type>
@@ -64,18 +64,18 @@
 		<!-- <dependency> <groupId>com.aspire</groupId> <artifactId>aspire-automation-autoconfiguration</artifactId> 
 			<version>0.0.4-SNAPSHOT</version> </dependency> -->
 
-      <dependency> 
-        <groupId>com.github.AspireInfotech</groupId>
-        <artifactId>Aspire-Automation-Core</artifactId>
-      </dependency>
-      <dependency> 
-        <groupId>com.github.AspireInfotech</groupId> 
-        <artifactId>Aspire-Automation-Reporting-Backend</artifactId>
-      </dependency>
-      <dependency>
-        <groupId>com.github.AspireInfotech</groupId>
-        <artifactId>Automation-Web-Util</artifactId>
-      </dependency>
+		<dependency>
+			<groupId>com.github.AspireInfotech</groupId>
+			<artifactId>Aspire-Automation-Core</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.github.AspireInfotech</groupId>
+			<artifactId>Aspire-Automation-Reporting-Backend</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.github.AspireInfotech</groupId>
+			<artifactId>Automation-Web-Util</artifactId>
+		</dependency>
 		<dependency>
 			<groupId>org.jbehave</groupId>
 			<artifactId>jbehave-core</artifactId>
@@ -154,6 +154,10 @@
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-feign</artifactId>
 		</dependency>
+		<dependency>
+				<groupId>com.github.AspireInfotech</groupId>
+				<artifactId>Automation-Dashboard-Integration</artifactId>
+		</dependency>
 	</dependencies>
 
 	<build>
@@ -177,11 +181,11 @@
 			</plugin>
 		</plugins>
 	</build>
-	
+
 	<repositories>
 		<repository>
-		    <id>jitpack.io</id>
-		    <url>https://jitpack.io</url>
+			<id>jitpack.io</id>
+			<url>https://jitpack.io</url>
 		</repository>
 	</repositories>
 
