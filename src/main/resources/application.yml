@@ -25,10 +25,10 @@ aspire:
       defaultloader:
         enabled: true   
         include: 
-         # - stories/01-login/TC**.story
-         # - stories/02-Profile/TC-**.story
-          #- stories/03-Footer/TC**.story
-          #- stories/04-Google Verification/TC-**.story
+          - stories/01-login/TC**.story
+          - stories/02-Profile/TC-**.story
+          - stories/03-Footer/TC**.story
+          - stories/04-Google Verification/TC-**.story
           - stories/**/TC-**.story
      
           
