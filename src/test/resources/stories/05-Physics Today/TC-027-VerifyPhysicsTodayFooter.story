@@ -2,20 +2,22 @@ Meta:
 @production
 Scenario: TC-027- Physics Today- verify the footer
 
-Given I am On ScitationPage
-When I click on AIP_Publisher
-And I click on Physics_Today_Journal
-Then The Resources should display
-And The AUTHOR should display
-And The LIBRARIAN should display
-And The ADVERTISER should display
-And The General_Information should display
-And The ABOUT should display
-And The CONTACT should display
-And The HELP should display
-And The PRIVACY_POLICY should display
-And The TERMS_OF_USE should display
-And The FOLLOW_AIP_PUBLISHING should display
-And The Facebook_Icon should display
-And The Twitter_Icon should display
-And The Linkedin_Icon should display
+Given [1000-9000] User opens home page
+And [1000-3000] User maximize browser window
+When [1111-1000] aip_Publisher should be clickable, Within 20 seconds
+And [1100-0300] User click on it
+And [1111-1000] physics_Today_Journal should be clickable, Within 20 seconds
+And [1100-0300] User click on it
+Then [1111-1080] Resources should be displayed, Within 20 seconds
+And [1101-1080] author_Main should be displayed
+And [1101-1080] advertiser_Main should be displayed
+And [1101-1080] about_Main should be displayed
+And [1101-1080] contact_Main should be displayed
+And [1101-1080] help_Main should be displayed
+And [1101-1080] privacy_Policy_Main should be displayed
+And [1101-1080] terms_Of_Use_Main should be displayed
+And [1101-1080] follow_Aip_Publishing_Main should be displayed
+And [1101-1080] Facebook_Icon should be displayed
+And [1101-1080] Twitter_Icon should be displayed
+And [1101-1080] Linkedin_Icon should be displayed
+

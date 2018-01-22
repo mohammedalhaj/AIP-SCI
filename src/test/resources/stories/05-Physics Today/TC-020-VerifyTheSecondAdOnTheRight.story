@@ -2,8 +2,12 @@ Meta:
 @production
 Scenario:TC-020- Physics Today- Physics Today- Verify The second Ad on the right
 
-Given I am On ScitationPage
-When I click on AIP_Publisher
-And I click on Physics_Today_image
-Then I click on second_Ad_right
+Given [1000-9000] User opens home page
+And [1000-3000] User maximize browser window
+When [1111-1000] aip_Publisher should be clickable, Within 20 seconds
+And [1100-0300] User click on it
+And [1111-1000] physics_Today_Image should be clickable, Within 20 seconds
+And [1100-0300] User click on it
+And [1111-1000] second_Ad_Right should be clickable, Within 20 seconds
+And [1100-0300] User click on it
 

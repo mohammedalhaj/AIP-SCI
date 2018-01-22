@@ -16,178 +16,184 @@ public interface PhysicsToday {
 	@CssSelector("${pages.pytoday.physics_Today_Header}")
 	public AspireWebElement physics_Today_Header();
 
-	@CssSelector("${pages.pytoday.about}")
-	public AspireWebElement about();
+	@CssSelector("${pages.pytoday.ad}")
+	public AspireWebElement ad();
 
-	@CssSelector("${pages.pytoday.contact}")
-	public AspireWebElement contact();
+	@CssSelector("${pages.pytoday.aip_Publisher}")
+	public AspireWebElement aip_Publisher();
 
-	@CssSelector("${pages.pytoday.help}")
-	public AspireWebElement help();
+	@CssSelector("${pages.pytoday.share_Section}")
+	public AspireWebElement share_Section();
 
-	@CssSelector("${pages.pytoday.privacy_Policy}")
-	public AspireWebElement privacy_Policy();
+	@CssSelector("${pages.pytoday.subscribe}")
+	public AspireWebElement subscribe();
 
-	@CssSelector("${pages.pytoday.terms_Of_Use}")
-	public AspireWebElement terms_Of_Use();
+	@CssSelector("${pages.pytoday.share_Fb_Pt}")
+	public AspireWebElement share_Fb_Pt();
 
-	@CssSelector("${pages.pytoday.follow_Aip_Publishing}")
-	public AspireWebElement follow_Aip_Publishing();
+	@CssSelector("${pages.pytoday.share_Twitter_Pt}")
+	public AspireWebElement share_Twitter_Pt();
 
-	@CssSelector("${pages.pytoday.facebook_Icon}")
-	public AspireWebElement facebook_Icon();
+	@CssSelector("${pages.pytoday.rss}")
+	public AspireWebElement rss();
 
-	@CssSelector("${pages.pytoday.twitter_Icon}")
-	public AspireWebElement twitter_Icon();
+	@CssSelector("${pages.pytoday.rss_Page}")
+	public AspireWebElement rss_Page();
 
-	@CssSelector("${pages.pytoday.linkedin_Icon}")
-	public AspireWebElement linkedin_Icon();
+	@CssSelector("${pages.pytoday.signUpForAlerts}")
+	public AspireWebElement signUpForAlerts();
 
-	@CssSelector("${pages.pytoday.page_Footer}")
-	public AspireWebElement page_Footer();
+	@CssSelector("${pages.pytoday.journal_Tabs}")
+	public AspireWebElement journal_Tabs();
 
-	@CssSelector("${pages.pytoday.footer_Copyright}")
-	public AspireWebElement footer_Copyright();
+	@CssSelector("${pages.pytoday.physics_Today_Subscribe_Btn}")
+	public AspireWebElement physics_Today_Subscribe_Btn();
 
-	@CssSelector("${pages.pytoday.author_Resource_Center}")
-	public AspireWebElement author_Resource_Center();
+	@CssSelector("${pages.pytoday.physics_Today_Subscribe_Page}")
+	public AspireWebElement physics_Today_Subscribe_Page();
 
-	@CssSelector("${pages.pytoday.aip_Scitation}")
-	public AspireWebElement aip_Scitation();
+	@CssSelector("${pages.pytoday.physics_Today_Home}")
+	public AspireWebElement physics_Today_Home();
 
-	@CssSelector("${pages.pytoday.aip_China}")
-	public AspireWebElement aip_China();
+	@CssSelector("${pages.pytoday.physics_Today_Browse}")
+	public AspireWebElement physics_Today_Browse();
 
-	@CssSelector("${pages.pytoday.authors_About}")
-	public AspireWebElement authors_About();
+	@CssSelector("${pages.pytoday.physics_Today_Info}")
+	public AspireWebElement physics_Today_Info();
 
-	@CssSelector("${pages.pytoday.authors_Publications}")
-	public AspireWebElement authors_Publications();
+	@CssSelector("${pages.pytoday.physics_Today_Jobs}")
+	public AspireWebElement physics_Today_Jobs();
 
-	@CssSelector("${pages.pytoday.authors_Librarians}")
-	public AspireWebElement authors_Librarians();
+	@CssSelector("${pages.pytoday.physics_Today_Signup_Alerts}")
+	public AspireWebElement physics_Today_Signup_Alerts();
 
-	@CssSelector("${pages.pytoday.authors_Authors}")
-	public AspireWebElement authors_Authors();
+	@CssSelector("${pages.pytoday.journal_Alerts_Page}")
+	public AspireWebElement journal_Alerts_Page();
 
-	@CssSelector("${pages.pytoday.authors_Publishing_Partners}")
-	public AspireWebElement authors_Publishing_Partners();
+	@CssSelector("${pages.pytoday.most_Recent_Image1}")
+	public AspireWebElement most_Recent_Image1();
 
-	@CssSelector("${pages.pytoday.authors_Advertising_Resources}")
-	public AspireWebElement authors_Advertising_Resources();
+	@CssSelector("${pages.pytoday.most_Recent_Image2}")
+	public AspireWebElement most_Recent_Image2();
 
-	@CssSelector("${pages.pytoday.authors_Careers}")
-	public AspireWebElement authors_Careers();
+	@CssSelector("${pages.pytoday.most_Recent_Image3}")
+	public AspireWebElement most_Recent_Image3();
 
-	@CssSelector("${pages.pytoday.authors_Contact_Us}")
-	public AspireWebElement authors_Contact_Us();
+	@CssSelector("${pages.pytoday.most_Recent_Image4}")
+	public AspireWebElement most_Recent_Image4();
 
-	@CssSelector("${pages.pytoday.before_You_Begin}")
-	public AspireWebElement before_You_Begin();
+	@CssSelector("${pages.pytoday.most_Recent_Image5}")
+	public AspireWebElement most_Recent_Image5();
 
-	@CssSelector("${pages.pytoday.prepare_Your_Manuscript}")
-	public AspireWebElement prepare_Your_Manuscript();
+	@CssSelector("${pages.pytoday.most_Recent_Image6}")
+	public AspireWebElement most_Recent_Image6();
 
-	@CssSelector("${pages.pytoday.submit_Your_Manuscript}")
-	public AspireWebElement submit_Your_Manuscript();
+	@CssSelector("${pages.pytoday.magazine_See_More}")
+	public AspireWebElement magazine_See_More();
 
-	@CssSelector("${pages.pytoday.Library_Resource_Center}")
-	public AspireWebElement Library_Resource_Center();
+	@CssSelector("${pages.pytoday.magazine_Image1}")
+	public AspireWebElement magazine_Image1();
 
-	@CssSelector("${pages.pytoday.promote_Your_Collection}")
-	public AspireWebElement promote_Your_Collection();
+	@CssSelector("${pages.pytoday.magazine_Image2}")
+	public AspireWebElement magazine_Image2();
 
-	@CssSelector("${pages.pytoday.manage_Your_Collection}")
-	public AspireWebElement manage_Your_Collection();
+	@CssSelector("${pages.pytoday.magazine_Image3}")
+	public AspireWebElement magazine_Image3();
 
-	@CssSelector("${pages.pytoday.help_Scitation_Logo}")
-	public AspireWebElement help_Scitation_Logo();
+	@CssSelector("${pages.pytoday.magazine_Image4}")
+	public AspireWebElement magazine_Image4();
 
-	@CssSelector("${pages.pytoday.privacy_Policy_Scitation_Logo}")
-	public AspireWebElement privacy_Policy_Scitation_Logo();
+	@CssSelector("${pages.pytoday.magazineSeeMore}")
+	public AspireWebElement magazineSeeMore();
 
-	@CssSelector("${pages.pytoday.terms_Of_Use_Scitation_Logo}")
-	public AspireWebElement terms_Of_Use_Scitation_Logo();
+	@CssSelector("${pages.pytoday.latest_Magazine_See_More}")
+	public AspireWebElement latest_Magazine_See_More();
 
-	@CssSelector("${pages.pytoday.about_Scitation_Logo}")
-	public AspireWebElement about_Scitation_Logo();
+	@CssSelector("${pages.pytoday.latest_Image1}")
+	public AspireWebElement latest_Image1();
 
-	@CssSelector("${pages.pytoday.about_AIP_Publishing}")
-	public AspireWebElement about_AIP_Publishing();
+	@CssSelector("${pages.pytoday.latest_Image2}")
+	public AspireWebElement latest_Image2();
 
-	@CssSelector("${pages.pytoday.advertising_Scitation_Logo}")
-	public AspireWebElement advertising_Scitation_Logo();
+	@CssSelector("${pages.pytoday.latest_Image3}")
+	public AspireWebElement latest_Image3();
 
-	@CssSelector("${pages.pytoday.advertiser_Resources}")
-	public AspireWebElement advertiser_Resources();
+	@CssSelector("${pages.pytoday.latest_Image4}")
+	public AspireWebElement latest_Image4();
 
-	@CssSelector("${pages.pytoday.contact_Scitation_Logo}")
-	public AspireWebElement contact_Scitation_Logo();
+	@CssSelector("${pages.pytoday.latest_Image5}")
+	public AspireWebElement latest_Image5();
 
-	@CssSelector("${pages.pytoday.customer_Service_Query_Radiobtn}")
-	public AspireWebElement customer_Service_Query_Radiobtn();
+	@CssSelector("${pages.pytoday.latest_Image6}")
+	public AspireWebElement latest_Image6();
 
-	@CssSelector("${pages.pytoday.technical_Support_Radiobtn}")
-	public AspireWebElement technical_Support_Radiobtn();
+	@CssSelector("${pages.pytoday.latest_Image7}")
+	public AspireWebElement latest_Image7();
 
-	@CssSelector("${pages.pytoday.editorial_Feedback_Radiobtn}")
-	public AspireWebElement editorial_Feedback_Radiobtn();
+	@CssSelector("${pages.pytoday.most_Recent_See_More}")
+	public AspireWebElement most_Recent_See_More();
 
-	@CssSelector("${pages.pytoday.name_Textbox}")
-	public AspireWebElement name_Textbox();
+	@CssSelector("${pages.pytoday.all_Departments}")
+	public AspireWebElement all_Departments();
 
-	@CssSelector("${pages.pytoday.email_Textbox}")
-	public AspireWebElement email_Textbox();
+	@CssSelector("${pages.pytoday.latest_Issues_Page}")
+	public AspireWebElement latest_Issues_Page();
 
-	@CssSelector("${pages.pytoday.account_Number_Textbox}")
-	public AspireWebElement account_Number_Textbox();
+	@CssSelector("${pages.pytoday.physicsTodayAdFrame}")
+	public AspireWebElement physicsTodayAdFrame();
 
-	@CssSelector("${pages.pytoday.journal}")
-	public AspireWebElement journal();
+	@CssSelector("${pages.pytoday.first_Ad_Right}")
+	public AspireWebElement first_Ad_Right();
 
-	@CssSelector("${pages.pytoday.comments_Textbox}")
-	public AspireWebElement comments_Textbox();
+	@CssSelector("${pages.pytoday.second_Ad_Right}")
+	public AspireWebElement second_Ad_Right();
 
-	@CssSelector("${pages.pytoday.contact_Submitbtn}")
-	public AspireWebElement contact_Submitbtn();
+	@CssSelector("${pages.pytoday.secondFrame}")
+	public AspireWebElement secondFrame();
 
-	@CssSelector("${pages.pytoday.contact_Clearbtn}")
-	public AspireWebElement contact_Clearbtn();
+	@CssSelector("${pages.pytoday.published_Date}")
+	public AspireWebElement published_Date();
 
-	@CssSelector("${pages.pytoday.livSupportImg}")
-	public AspireWebElement livSupportImg();
+	@CssSelector("${pages.pytoday.physics_Today_Home_Title}")
+	public AspireWebElement physics_Today_Home_Title();
 
-	@CssSelector("${pages.pytoday.library_Resource_Center}")
-	public AspireWebElement library_Resource_Center();
+	@CssSelector("${pages.pytoday.most_Recent_Online_Stories}")
+	public AspireWebElement most_Recent_Online_Stories();
 
-	@CssSelector("${pages.pytoday.contact_Main}")
-	public AspireWebElement contact_Main();
+	@CssSelector("${pages.pytoday.from_The_Magazine}")
+	public AspireWebElement from_The_Magazine();
 
-	@CssSelector("${pages.pytoday.help_Main}")
-	public AspireWebElement help_Main();
+	@CssSelector("${pages.pytoday.latest_Physics_Jobs}")
+	public AspireWebElement latest_Physics_Jobs();
 
-	@CssSelector("${pages.pytoday.privacy_Policy_Main}")
-	public AspireWebElement privacy_Policy_Main();
+	@CssSelector("${pages.pytoday.latest_Magazine_Issues}")
+	public AspireWebElement latest_Magazine_Issues();
 
-	@CssSelector("${pages.pytoday.terms_Of_Use_Main}")
-	public AspireWebElement terms_Of_Use_Main();
+	@CssSelector("${pages.pytoday.most_Read}")
+	public AspireWebElement most_Read();
 
-	@CssSelector("${pages.pytoday.author_Main}")
-	public AspireWebElement author_Main();
+	@CssSelector("${pages.pytoday.view_All_Jobs}")
+	public AspireWebElement view_All_Jobs();
 
-	@CssSelector("${pages.pytoday.librarian_Main}")
-	public AspireWebElement librarian_Main();
+	@CssSelector("${pages.pytoday.most_Read_Article}")
+	public AspireWebElement most_Read_Article();
 
-	@CssSelector("${pages.pytoday.advertiser_Main}")
-	public AspireWebElement advertiser_Main();
+	@CssSelector("${pages.pytoday.talked_About}")
+	public AspireWebElement talked_About();
 
-	@CssSelector("${pages.pytoday.about_Main}")
-	public AspireWebElement about_Main();
+	@CssSelector("${pages.pytoday.most_Read_Articles}")
+	public AspireWebElement most_Read_Articles();
 
-	@CssSelector("${pages.pytoday.terms_Of_Use_Main}")
-	public AspireWebElement follow_Aip_Publishing_Main();
+	@CssSelector("${pages.pytoday.most_Read_Articles_Date}")
+	public AspireWebElement most_Read_Articles_Date();
 	
-	@CssSelector("${pages.pytoday.the_Terms_Of_Use}")
-	public AspireWebElement the_Terms_Of_Use();
-
+	@CssSelector("${pages.pytoday.talked_About_Articles}")
+	public AspireWebElement talked_About_Articles();
+	
+	@CssSelector("${pages.pytoday.banner_Subscribe}")
+	public AspireWebElement banner_Subscribe();
+	
+	@CssSelector("${pages.pytoday.left_Title}")
+	public AspireWebElement left_Title();
+	
 }
