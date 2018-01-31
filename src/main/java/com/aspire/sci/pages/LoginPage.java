@@ -15,8 +15,11 @@ public interface LoginPage {
 	public AspireWebElement password(); 
 
 	@CssSelector("${pages.login.loginButton}")
-	public AspireWebElement loginButton(); 
-
+	public AspireWebElement loginButton();
+	
+	@CssSelector("${pages.login.the_Login_Button}")
+	public AspireWebElement the_Login_Button();
+	
 	@CssSelector("${pages.login.profile_Welcome}")
 	public AspireWebElement profile_Welcome(); 
 
@@ -46,6 +49,9 @@ public interface LoginPage {
 
 	@CssSelector("${pages.login.login_Button}")
 	public AspireWebElement login_Button();
+	
+	@CssSelector("${pages.login.signin_Button}")
+	public AspireWebElement signin_Button();
 	
 		
 }

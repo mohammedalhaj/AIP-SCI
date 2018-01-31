@@ -10,5 +10,6 @@ And [1111-1000] Physics_Today_Image should be clickable, Within 20 seconds
 And [1100-0300] User click on it
 Then [1111-1000] share_Twitter_Pt should be clickable, Within 20 seconds
 And [1100-0300] User click on it
-And [1000-4000] User switchs to tab 2
+And [1000-4000] User switches to tab 1
 Then [1011-0100] Page Url should equal to https://twitter.com/physicstoday, Within 20 seconds
+And [1000-9140] Close the browser

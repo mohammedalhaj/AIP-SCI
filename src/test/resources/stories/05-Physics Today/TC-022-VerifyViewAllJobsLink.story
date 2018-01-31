@@ -10,4 +10,4 @@ And [1111-1000] physics_Today_Journal should be clickable, Within 20 seconds
 And [1100-0300] User click on it
 And [1111-1000] view_All_Jobs should be clickable, Within 20 seconds
 And [1100-0300] User click on it
-Then [1011-0100] Page Url should equal to https://jobs.physicstoday.org, Within 20 seconds
+Then [1011-0000] Page Url should contain jobs.physicstoday.org, Within 20 seconds

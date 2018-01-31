@@ -7,7 +7,7 @@ aspire:
      integration:
       enabled: true
       host: 82.212.71.230
-      port: 5070
+      port: 5080
       path: api
       protocol: http
       logLevel: FULL
@@ -25,11 +25,18 @@ aspire:
       defaultloader:
         enabled: true   
         include: 
-          - stories/01-login/TC**.story
-          - stories/02-Profile/TC-**.story
-          - stories/03-Footer/TC**.story
-          - stories/04-Google Verification/TC-**.story
+          - stories/01-login/TC-001**.story
+          #- stories/02-Profile/TC-001**.story
+          #- stories/03-Footer/TC-0**.story
+          #- stories/04-Google Verification/TC-**.story
           - stories/**/TC-**.story
+          #- stories/**/TC-012-VerifySIGN UP FOR ALERTS.story
+          #- stories/07-Publishers/TC-**.story
+          #- stories/08-Registration/TC-**.story
+          #- stories/09-Search/TC-0001**.story
+          
+          
+          
      
           
         

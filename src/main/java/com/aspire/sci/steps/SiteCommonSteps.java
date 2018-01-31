@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.sql.DriverManager;
 import java.sql.DriverPropertyInfo;
 import java.util.Iterator;
+import java.util.List;
 import java.util.stream.Stream;
 
 import org.jbehave.core.annotations.Given;
@@ -34,6 +35,7 @@ import com.aspire.automation.web.util.AspireAlert;
 import com.aspire.automation.web.util.AspireBrowser;
 import com.aspire.automation.web.util.AspireWebElement;
 import com.aspire.automation.web.util.annotation.Browser;
+import com.aspire.automation.web.util.annotation.EnableAspirePageScan;
 import com.aspire.automation.web.util.jbehave.steps.page.AlertGenericSteps;
 import com.aspire.sci.pages.SiteCommonElements;
 
@@ -47,11 +49,11 @@ public class SiteCommonSteps {
 	@Value("${user.dir}")
 	private String refPath;
 
-	{}
-	
-	WebDriver driver=new FirefoxDriver();
-		
-	
+	{
+	}
+
+	WebDriver driver = new FirefoxDriver();
+
 	@Browser("siteCommonElements")
 	AspireBrowser<SiteCommonElements> siteCommonElements;
 
@@ -65,14 +67,7 @@ public class SiteCommonSteps {
 		// AspireBrowser.getElementByPropertyNameGlobaly("upload_Files").within(20).toBeDisabled();
 		// }
 	}
-	
-//	@When("[8201-0004] Select Second Type")
-//	@Then("[8201-0004] Select Second Type")
-//	public void selectSecond(@Named("element") String element) {
-//		AspireBrowser.getLastAccessedPage().getElementByPropertyName(element).get(1).
-//
-//	}
-	
+
 	@When("[8101-0004] User Accepts dialog")
 	@Then("[8101-0004] User Accepts dialog")
 	public void acceptsDialog() {
@@ -83,21 +78,32 @@ public class SiteCommonSteps {
 		}
 
 	}
-	
-	@When("[8110-1004] Frame")
-	@Then("[8110-1004] Frame")
-	public void switchIframe() throws InterruptedException {
-		try {
-			Thread.sleep(7000);
-			driver.switchTo().frame("title_ifr");
-			Thread.sleep(3000);
-			AspireBrowser.getLastAccessedPage().getElementByPropertyName("#tinymce").sendKeys("Test");
-			driver.switchTo().defaultContent();
-		} catch (Exception e) {
-			Thread.sleep(30000);
-			e.printStackTrace();
-		}
+
+	String elemText;
+
+	@When("[8101-0094] User saves $elem title")
+	@Then("[8101-0094] User saves $elem title")
+	public void getText(String input) throws IOException {
+		elemText = AspireBrowser.getLastAccessedPage().getElementByPropertyName(input).text().get();
+	}
+
+	@When("[8101-0024] User compare $elem title")
+	@Then("[8101-0024] User compare $elem title")
+	public void CompareElementsText(String Elemnt) {
+		Elemnt = AspireBrowser.getLastAccessedPage().getElementByPropertyName(Elemnt).text().get();
+		Assert.assertTrue(Elemnt.toLowerCase().contains(elemText.toLowerCase()));
 
 	}
+
+
+
+	// public boolean VerifyTheVisibiltyOfContentSimple(String ItemSelector) throws
+	// IOException {
+	// boolean condition = false;
+	// condition = ((List<WebElement>)
+	// AspireBrowser.getLastAccessedPage().getElementByPropertyName(ItemSelector))
+	// .size() > 0;
+	// return condition;
+	// }
 
 }

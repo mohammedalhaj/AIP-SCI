@@ -11,4 +11,4 @@ And [1100-0300] User click on it
 Then [1111-1080] most_Read_Article should be displayed, Within 20 seconds
 And [1101-0140] Text should contain Most Read
 And [1101-1080] most_Read_Articles should be displayed
-And [1101-1080] most_Read_Articles_Date should be displayed
+And [1111-1030] most_Read_Articles_Date should be presence, Within 20 seconds
